@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChirpController;
+use App\Http\Controllers\PatientController; 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QueueController;
@@ -26,7 +27,8 @@ Route::get('/queues/create', [QueueController::class, 'create'])->name('queues.c
 Route::post('/queues', [QueueController::class, 'store'])->name('queues.store');
 Route::get('/queues/{id}', [QueueController::class, 'show'])->name('queues.show');
 Route::post('/queues/{id}/add-patient', [QueueController::class, 'addPatient'])->name('queues.addPatient');
-
+Route::get('/patients/{patient}/edit-patient', [PatientController::class, 'edit'])->name( "patient.edit");
+Route::patch('/patients/{patient}', [PatientController::class, 'update'])->name( "patient.update");
 // Chirps routes
 Route::resource('chirps', ChirpController::class)
     ->only(['index', 'store'])
